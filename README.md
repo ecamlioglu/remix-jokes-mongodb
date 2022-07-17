@@ -1,3 +1,6 @@
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ab3f0d86-33e3-4db4-9969-a933f685b754/deploy-status)](https://app.netlify.com/sites/remix-jokes-mongo/deploys)
+
 # Welcome to Remix!
 
 - [Remix Docs](https://remix.run/docs)

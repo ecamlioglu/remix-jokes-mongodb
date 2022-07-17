@@ -17,10 +17,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [14.x, 16.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       
       - uses: actions/cache@v2
         with:
@@ -37,7 +37,7 @@ jobs:
         if: steps.cache-deps.outputs.cache-hit == 'true'
         run: |
           yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional --offline
+          yarn install --ignore-optional --offline
         
       - name: Build
         run: |

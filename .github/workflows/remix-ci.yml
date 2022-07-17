@@ -32,12 +32,12 @@ jobs:
         if: steps.cache-deps.outputs.cache-hit != 'true'
         run: |
           yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional
+          yarn install --ignore-optional
       - name: Install Dependencies (from cache)
         if: steps.cache-deps.outputs.cache-hit == 'true'
         run: |
           yarn policies set-version
-          yarn install --ignore-optional --offline
+          yarn install --frozen-lockfile --ignore-optional --offline
         
       - name: Build
         run: |

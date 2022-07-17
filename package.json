@@ -7,17 +7,20 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
-    "start": "remix-serve build"
+    "start": "cross-env NODE_ENV=production netlify dev"
   },
   "dependencies": {
-    "@prisma/client": "^4.0.0",
+    "@netlify/functions": "^1.0.0",
+    "@remix-run/netlify": "^1.6.5",
     "@remix-run/node": "^1.6.5",
     "@remix-run/react": "^1.6.5",
+    "cross-env": "^7.0.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "@prisma/client": "^4.0.0",
     "@remix-run/serve": "^1.6.5",
     "bcryptjs": "^2.4.3",
-    "esbuild-register": "^3.3.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "esbuild-register": "^3.3.3"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.6.5",
@@ -27,7 +30,8 @@
     "@types/react-dom": "^17.0.17",
     "eslint": "^8.15.0",
     "prisma": "^4.0.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "@remix-run/serve": "^1.6.5"
   },
   "engines": {
     "node": ">=14"

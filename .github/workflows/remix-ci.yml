@@ -1,0 +1,44 @@
+name: Remix CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+defaults:
+  run:
+    working-directory: angular/
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      
+      - uses: actions/cache@v2
+        with:
+          path: 'angular/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('angular/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-                
+      - name: Install Dependencies (from network)
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: |
+          yarn policies set-version
+          yarn install --frozen-lockfile --ignore-optional
+      - name: Install Dependencies (from cache)
+        if: steps.cache-deps.outputs.cache-hit == 'true'
+        run: |
+          yarn policies set-version
+          yarn install --frozen-lockfile --ignore-optional --offline
+        
+      - name: Build
+        run: |
+          yarn build
